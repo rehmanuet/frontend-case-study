@@ -1,38 +1,68 @@
 /// <reference types="cypress" />
 
+const youtube = require("../../support/selectors");
+
 describe("Open Youtube", () => {
-  beforeEach(() => {
-    cy.visit("https://www.youtube.com");
+  before(() => {
+    cy.visit("/");
   });
 
-  it("displays two todo items by default", () => {
+  xit("verifies the presence of all button & toggle on video player", () => {
     cy.searchVideo("movingimage");
-    cy.get('[id="video-title"] yt-formatted-string').first().click();
-    cy.wait(1000);
-    cy.get(".ytp-settings-button").click();
-    cy.xpath("//div[contains(text(),'Annotations')]").should("be.visible");
-    // cy.get(".ytp-play-button").click();
-    cy.get('[class="video-stream html5-main-video"]').scrollIntoView()
+    cy.get(youtube.selectors.video).first().click();
+
+    cy.get(youtube.selectors.playButton).should("be.visible");
+    cy.get(youtube.selectors.nextButton).should("be.visible");
+
+    cy.get(youtube.selectors.muteButton).trigger("mouseover");
+    cy.get(youtube.selectors.muteButton).should("be.visible");
+    cy.get(youtube.selectors.volumeSlider).should("be.visible");
+
+    cy.get(youtube.selectors.timeDisplay).should("be.visible");
+    cy.get(youtube.selectors.currentTime).should("be.visible");
+    cy.get(youtube.selectors.totalTime).should("be.visible");
+
+    cy.get(youtube.selectors.toogleButton).should("be.visible");
+
+    cy.get(youtube.selectors.settingButton).should("be.visible");
+    cy.get(youtube.selectors.settingButton).click();
+    cy.get(youtube.selectors.annotationToggle).should("be.visible");
+    cy.get(youtube.selectors.qualityLabel).should("be.visible");
+    cy.get(youtube.selectors.qualityOption).should("be.visible");
+    cy.get(youtube.selectors.playBackSpeedLabel).should("be.visible");
+    cy.get(youtube.selectors.playBackSpeedOption).should("be.visible");
+    cy.get(youtube.selectors.settingButton).click();
+    cy.get(youtube.selectors.videoPlayer).trigger("mouseover");
+    cy.get(youtube.selectors.miniPlayerButton).should("be.visible");
   });
 
-  xit("can add new todo items", () => {
-    const newItem = "Feed the cat";
-    cy.get("[data-test=new-todo]").type(`${newItem}{enter}`);
-
-    cy.get(".todo-list li")
-      .should("have.length", 3)
-      .last()
-      .should("have.text", newItem);
+  it("verifies the mute functionality", () => {
+    cy.get(youtube.selectors.muteButton)
+      .trigger("mouseover")
+      .should("be.visible");
+    cy.get(youtube.selectors.muteButton)
+      .trigger("mouseover")
+      .click()
+      .should("have.attr", "aria-label", "Unmute (m)");
+    cy.get(youtube.selectors.muteButton)
+      .trigger("mouseover")
+      .click()
+      .should("have.attr", "aria-label", "Mute (m)");
   });
 
-  xit("can check off an item as completed", () => {
-    cy.contains("Pay electric bill")
-      .parent()
-      .find("input[type=checkbox]")
-      .check();
+  it("verifies the volume slider functionality", () => {
+    cy.get(youtube.selectors.muteButton).trigger("mouseover");
 
-    cy.contains("Pay electric bill")
-      .parents("li")
-      .should("have.class", "completed");
+    cy.increaseVolumeTo(100);
+
+    cy.get(youtube.selectors.volume)
+      .trigger("mouseover")
+      .should("have.attr", "aria-valuenow", "100");
+
+    cy.decreaseVolumeTo(50);
+
+    cy.get(youtube.selectors.volume)
+      .trigger("mouseover")
+      .should("have.attr", "aria-valuenow", "50");
   });
 });

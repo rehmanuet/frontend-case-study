@@ -1,3 +1,5 @@
+const youtube = require("../support/selectors");
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -46,4 +48,26 @@ Cypress.Commands.add("searchVideo", (label) => {
   cy.get('span[id="title"][class*="ytd-shelf-renderer"]')
     .first()
     .should("contain", label);
+});
+
+Cypress.Commands.add("increaseVolumeTo", (num) => {
+  cy.get(youtube.selectors.volume).then((ele) => {
+    if (ele.length > 0) {
+      for (let index = 0; index < num / 5; index++) {
+        cy.get(youtube.selectors.volume).trigger("mouseover").type("{uparrow}");
+      }
+    }
+  });
+});
+
+Cypress.Commands.add("decreaseVolumeTo", (num) => {
+  cy.get(youtube.selectors.volume).then((ele) => {
+    if (ele.length > 0) {
+      for (let index = 0; index < num / 5; index++) {
+        cy.get(youtube.selectors.volume)
+          .trigger("mouseover")
+          .type("{downarrow}");
+      }
+    }
+  });
 });
