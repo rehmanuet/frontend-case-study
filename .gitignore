@@ -1,0 +1,9 @@
+# Dependencies
+/node_modules
+
+# Cypress screenshots and videos
+/cypress/videos
+/cypress/screenshots
+
+# Logs
+*.log

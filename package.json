@@ -1,0 +1,23 @@
+{
+  "name": "frontend-case-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rehmanuet/frontend-case-study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rehmanuet/frontend-case-study/issues"
+  },
+  "homepage": "https://github.com/rehmanuet/frontend-case-study#readme",
+  "devDependencies": {
+    "cypress": "^8.6.0",
+    "cypress-xpath": "^1.6.2"
+  }
+}
