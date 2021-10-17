@@ -61,3 +61,8 @@ Cypress.Commands.add("decreaseVolumeTo", (percentValue) => {
     }
   });
 });
+
+Cypress.Commands.add("openSetting", () => {
+  cy.get(youtube.selectors.videoPlayer).trigger("mouseover");
+  cy.get(youtube.selectors.settingButton).should("be.visible").click();
+});

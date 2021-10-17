@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://www.youtube.com",
+  "baseUrl": "https://www.youtube.com/",
   "viewportWidth": 900,
   "viewportHeight": 900,
   "watchForFileChanges": false,
