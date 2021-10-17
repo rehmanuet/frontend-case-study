@@ -1,33 +1,13 @@
 const youtube = require("../support/selectors");
 
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+/**
+ * Custom and reuseable commands for scalability
+ * @author Abdur Rehman <rehmanuet@yahoo.com>
+ */
 
+
+// Overwrte the visit implementation to open the YouTube always in Ennglish,
 Cypress.Commands.overwrite("visit", (originalFn, url, options) => {
-  console.log("calling cy.visit");
   const opts = {
     onBeforeLoad: (win) => {
       Object.defineProperty(win.navigator, "language", { value: "en_US" });
@@ -43,27 +23,37 @@ Cypress.Commands.overwrite("visit", (originalFn, url, options) => {
   return originalFn(url, opts);
 });
 
-Cypress.Commands.add("searchVideo", (label) => {
-  cy.get('[id="search-input"]').should("be.visible").type(`${label}{enter}`);
-  cy.get('span[id="title"][class*="ytd-shelf-renderer"]')
-    .first()
-    .should("contain", label);
+Cypress.Commands.add("searchVideo", (videoLabel) => {
+  cy.get(youtube.selectors.searchBar)
+    .should("be.visible")
+    .type(`${videoLabel}{enter}`);
+  cy.get(youtube.selectors.searchLabel).first().should("contain", videoLabel);
 });
 
-Cypress.Commands.add("increaseVolumeTo", (num) => {
+/**
+ * Created the custom generic command to increase the volume by percentage,
+ * @param {Integer} percentValue - Value to increase the volume.
+ */
+Cypress.Commands.add("increaseVolumeTo", (percentValue) => {
   cy.get(youtube.selectors.volume).then((ele) => {
     if (ele.length > 0) {
-      for (let index = 0; index < num / 5; index++) {
-        cy.get(youtube.selectors.volume).trigger("mouseover").type("{uparrow}");
+      for (let index = 0; index < percentValue / 5; index++) {
+        cy.get(youtube.selectors.volume)
+        .trigger("mouseover")
+        .type("{uparrow}");
       }
     }
   });
 });
 
-Cypress.Commands.add("decreaseVolumeTo", (num) => {
+/**
+ * Created the custom generic command to decrease the volume by percentage,
+ * @param {Integer} percentValue - Value to decrease the volume.
+ */
+Cypress.Commands.add("decreaseVolumeTo", (percentValue) => {
   cy.get(youtube.selectors.volume).then((ele) => {
     if (ele.length > 0) {
-      for (let index = 0; index < num / 5; index++) {
+      for (let index = 0; index < percentValue / 5; index++) {
         cy.get(youtube.selectors.volume)
           .trigger("mouseover")
           .type("{downarrow}");
