@@ -10,10 +10,10 @@ describe("Open Youtube", () => {
     cy.get(youtube.selectors.video).first().click();
   });
 
-  it("validates the play & pause functionality",
+  it(
+    "validates the play & pause functionality",
     { defaultCommandTimeout: 20000 },
     () => {
-     
       /*
        * Testcase: Validate the auto-playing functionality.
        * While video is playing, the player does not show the "play"
@@ -33,13 +33,23 @@ describe("Open Youtube", () => {
        * If video is playing then its current time is greater than start time
        * difference(seconds) = (videoCurrentTime - videoStartTime)/1000
        */
+
+      cy.waitUntil( () => cy.get(youtube.selectors.currentTime).text().should("not.eq", "0:00"),
+        {
+          errorMsg: "The loading time was too long even for this crazy playback time thing!",
+          timeout: 20000,
+        });
+
+      cy.openSetting();
       cy.get(youtube.selectors.currentTime)
         .text()
         .then((value) => {
           let videoStartTime = "0:00";
           let videoCurrentTime = value;
           let diff =
-            (moment(videoCurrentTime, "mm:ss") - moment(videoStartTime, "mm:ss")) / 1000;
+            (moment(videoCurrentTime, "mm:ss") -
+              moment(videoStartTime, "mm:ss")) /
+            1000;
           cy.get(youtube.selectors.currentTime)
             .text()
             .should("not.be", videoStartTime);
@@ -53,11 +63,9 @@ describe("Open Youtube", () => {
        * video get paused or not.
        */
       cy.get(youtube.selectors.currentTime).trigger("mouseover");
-      cy.waitUntil(
-        () => cy.get(youtube.selectors.currentTime).text().should("eq", "0:15"),
+      cy.waitUntil( () => cy.get(youtube.selectors.currentTime).text().should("eq", "0:15"),
         {
-          errorMsg:
-            "The loading time was too long even for this crazy playback time thing!",
+          errorMsg: "The loading time was too long even for this crazy playback time thing!",
           timeout: 20000,
         }
       ).then(() => {

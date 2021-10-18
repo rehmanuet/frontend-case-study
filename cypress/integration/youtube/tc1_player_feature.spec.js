@@ -41,7 +41,6 @@ describe("Open Youtube", () => {
 
     cy.get(youtube.selectors.settingButton).should("be.visible");
     cy.get(youtube.selectors.settingButton).click();
-    cy.get(youtube.selectors.annotationToggle).should("be.visible");
     cy.get(youtube.selectors.qualityLabel).should("be.visible");
     cy.get(youtube.selectors.qualityOption).should("be.visible");
     cy.get(youtube.selectors.playBackSpeedLabel).should("be.visible");

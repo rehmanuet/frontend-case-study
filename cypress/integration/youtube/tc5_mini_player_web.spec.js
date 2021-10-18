@@ -31,7 +31,9 @@ describe("Open Youtube", () => {
      * mini-player button to maximize and assert the result from DOM attr.
      */
     cy.get(youtube.selectors.miniPlayerUi).should("have.attr", "style", "");
-    cy.get(youtube.selectors.maximizeMiniPlayer).trigger("mouseover").click({force:"true"});
+    // cy.get(youtube.selectors.maximizeMiniPlayer).trigger("mouseover").click({force:"true"});
+    cy.realPress("i");
+
     cy.get(youtube.selectors.miniPlayerUi).should(
       "have.attr",
       "style",

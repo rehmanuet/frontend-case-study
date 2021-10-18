@@ -4,5 +4,6 @@
   "viewportHeight": 900,
   "watchForFileChanges": false,
   "scrollBehavior": false,
-  "defaultCommandTimeout": 10000
+  "defaultCommandTimeout": 20000,
+  "pageLoadTimeout": 80000
 }
