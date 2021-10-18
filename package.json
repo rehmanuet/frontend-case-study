@@ -2,10 +2,9 @@
   "name": "frontend-case-study",
   "version": "1.0.0",
   "description": "Frontend Automation Framework",
-  "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/cypress run",
-    "cy:run": "cypress run"
+    "cy:run:":"cypress run --headed --config video=false --spec 'cypress/integration/1-web/*'"
   },
   "repository": {
     "type": "git",

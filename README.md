@@ -1,5 +1,4 @@
 # Front QA Case Study | Cypress | CircleCI
-<sup>Live Build Status:</sup><br />[![CircleCI](https://circleci.com/gh/rehmanuet/backend-case-study/tree/master.svg?style=shield)](https://circleci.com/gh/rehmanuet/backend-case-study/tree/master)
 
 Introduction:
 ---------------
@@ -23,7 +22,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 git clone git@github.com:rehmanuet/frontend-case-study.git
 npm install
-npm run test
+npm run 
 ```
 
 Coverage
@@ -82,6 +81,10 @@ cy.get(youtube.selectors.currentTime)
   });
 cy.get(youtube.selectors.currentTime).trigger("mouseover");
 ```
+#### Results
+Video recording are available at `cypress/videos/`
+<img src="https://github.com/rehmanuet/DataEssential/blob/master/junk/resultfe.png?raw=true" width="600" height="400" />
 
+Sometime testcase fails intermittently on CI because of headless mode ([ref:cypress:issue](https://github.com/cypress-io/cypress/issues/5098))
 
 _contact:`rehmanuet[at]yahoo[dot]com`_ *or* _[LinkedIn](https://www.linkedin.com/in/rehmanuet/)_
