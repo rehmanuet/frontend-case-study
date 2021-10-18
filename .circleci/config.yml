@@ -8,5 +8,7 @@ orbs:
 workflows:
   build:
     jobs:
-      - cypress/run
+      - cypress/install
+      - cypress/run:
+          group: CI Test
           spec: cypress/integration/1-web/*
