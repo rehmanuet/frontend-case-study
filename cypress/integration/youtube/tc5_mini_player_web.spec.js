@@ -22,7 +22,7 @@ describe("Open Youtube", () => {
       "style",
       "display: none;"
     );
-    cy.get(youtube.selectors.miniPlayerButton).trigger("mouseover").click();
+    cy.get(youtube.selectors.miniPlayerButton).trigger("mouseover").click({force:"true"});
     cy.get(youtube.selectors.miniPlayerUi).should("have.attr", "style", "");
 
     /*
@@ -31,7 +31,7 @@ describe("Open Youtube", () => {
      * mini-player button to maximize and assert the result from DOM attr.
      */
     cy.get(youtube.selectors.miniPlayerUi).should("have.attr", "style", "");
-    cy.get(youtube.selectors.maximizeMiniPlayer).trigger("mouseover").click();
+    cy.get(youtube.selectors.maximizeMiniPlayer).trigger("mouseover").click({force:"true"});
     cy.get(youtube.selectors.miniPlayerUi).should(
       "have.attr",
       "style",

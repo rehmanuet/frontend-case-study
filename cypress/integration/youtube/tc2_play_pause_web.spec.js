@@ -39,9 +39,7 @@ describe("Open Youtube", () => {
           let videoStartTime = "0:00";
           let videoCurrentTime = value;
           let diff =
-            (moment(videoCurrentTime, "mm:ss") -
-              moment(videoStartTime, "mm:ss")) /
-            1000;
+            (moment(videoCurrentTime, "mm:ss") - moment(videoStartTime, "mm:ss")) / 1000;
           cy.get(youtube.selectors.currentTime)
             .text()
             .should("not.be", videoStartTime);

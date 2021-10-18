@@ -5,8 +5,8 @@
 
 
 const selectors = {
-  searchBar: '[id="search-input"]',
   searchLabel: 'span[id="title"][class*="ytd-shelf-renderer"]',
+  searchButton: '#search-icon-legacy',
   playButton: ".ytp-play-button",
   nextButton: ".ytp-next-button",
   muteButton: ".ytp-mute-button",
@@ -27,6 +27,7 @@ const selectors = {
   playBackSpeedOption: '[aria-haspopup="true"][class*="menuitem"]:nth-of-type(2) [class*="menuitem-content"]',
   qualityLabel: '[aria-haspopup="true"][class*="menuitem"]:nth-of-type(3) [class*="menuitem-label"]',
   qualityOption: '[aria-haspopup="true"][class*="menuitem"]:nth-of-type(3) [class*="menuitem-content"]',
+  searchBar: '#search-input > #search',
   videoPlayer: '[class="video-stream html5-main-video"]',
   video: '[id="video-title"] yt-formatted-string',
   miniPlayerUi:'[class="ytp-miniplayer-ui"]',

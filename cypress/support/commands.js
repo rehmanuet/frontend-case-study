@@ -26,7 +26,8 @@ Cypress.Commands.overwrite("visit", (originalFn, url, options) => {
 Cypress.Commands.add("searchVideo", (videoLabel) => {
   cy.get(youtube.selectors.searchBar)
     .should("be.visible")
-    .type(`${videoLabel}{enter}`);
+    .type(videoLabel);
+  cy.get(youtube.selectors.searchButton).click({force:"true"});
   cy.get(youtube.selectors.searchLabel).first().should("contain", videoLabel);
 });
 
@@ -63,6 +64,5 @@ Cypress.Commands.add("decreaseVolumeTo", (percentValue) => {
 });
 
 Cypress.Commands.add("openSetting", () => {
-  cy.get(youtube.selectors.videoPlayer).trigger("mouseover");
   cy.get(youtube.selectors.settingButton).should("be.visible").click();
 });
