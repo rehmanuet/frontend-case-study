@@ -84,7 +84,4 @@ cy.get(youtube.selectors.currentTime).trigger("mouseover");
 ```
 
 
-#### Results
-
-
 _contact:`rehmanuet[at]yahoo[dot]com`_ *or* _[LinkedIn](https://www.linkedin.com/in/rehmanuet/)_

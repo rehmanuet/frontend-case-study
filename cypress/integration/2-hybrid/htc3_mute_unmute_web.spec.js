@@ -1,16 +1,21 @@
 /// <reference types="cypress" />
 
 const youtube = require("../../support/selectors");
-const moment = require("moment");
 
 describe("Open Youtube", () => {
+  const sizes = [[1024, 768], "iphone-xr"];
+
   before(() => {
     cy.visit("/");
     cy.searchVideo("movingimage");
     cy.get(youtube.selectors.video).first().click();
   });
+  sizes.forEach((sizes) => {
+  it(`validates the mute/unmute functionality for viewport ${sizes}`, () => {
+    if (Cypress._.isArray(sizes)) {
+      cy.viewport(sizes[0], sizes[1]);
+    } else {cy.viewport(sizes);  }
 
-  it("validates the mute/unmute functionality", () => {
     cy.get(youtube.selectors.muteButton)
       .trigger("mouseover")
       .should("be.visible");
@@ -35,4 +40,4 @@ describe("Open Youtube", () => {
       .click()
       .should("have.attr", "aria-label", "Mute (m)");
   });
-});
+});});

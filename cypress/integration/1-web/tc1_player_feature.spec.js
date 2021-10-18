@@ -1,12 +1,13 @@
-/// <reference types="cypress" />
-
 const youtube = require("../../support/selectors");
-const moment = require("moment");
 
 describe("Open Youtube", () => {
   before(() => {
     cy.visit("/");
     cy.searchVideo("movingimage");
+    cy.waitUntil( () => cy.get(youtube.selectors.video).should("be.visible"),
+    {
+      timeout: 30000,
+    });
     cy.get(youtube.selectors.video).first().click();
   });
   it("validates the presence of all button, toggle and options on video player", () => {
@@ -40,7 +41,7 @@ describe("Open Youtube", () => {
       .should("be.visible");
 
     cy.get(youtube.selectors.settingButton).should("be.visible");
-    cy.get(youtube.selectors.settingButton).click();
+    cy.openSetting();
     cy.get(youtube.selectors.qualityLabel).should("be.visible");
     cy.get(youtube.selectors.qualityOption).should("be.visible");
     cy.get(youtube.selectors.playBackSpeedLabel).should("be.visible");

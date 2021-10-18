@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 const youtube = require("../../support/selectors");
 const moment = require("moment");
 

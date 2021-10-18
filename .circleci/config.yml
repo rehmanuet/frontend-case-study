@@ -9,3 +9,4 @@ workflows:
   build:
     jobs:
       - cypress/run
+          spec: cypress/integration/1-web/*

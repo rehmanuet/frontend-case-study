@@ -28,7 +28,6 @@ Cypress.Commands.add("searchVideo", (videoLabel) => {
     .should("be.visible")
     .type(videoLabel);
   cy.get(youtube.selectors.searchButton).click({force:"true"});
-  cy.get(youtube.selectors.searchLabel).first().should("contain", videoLabel);
 });
 
 /**
