@@ -1,4 +1,4 @@
-# Front QA Case Study | Cypress | CircleCI
+# Video Player Testing | Cypress | CircleCI
 
 Introduction:
 ---------------
